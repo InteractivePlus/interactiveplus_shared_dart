@@ -23,10 +23,15 @@ SOFTWARE.
  */
 
 
+import 'package:equatable/equatable.dart';
 import 'package:interactiveplus_shared_dart/src/errors/ErrorParams.dart';
 import 'package:interactiveplus_shared_dart/src/utils/serializable.dart';
 import 'package:intl/intl.dart';
-class InteractivePlusSystemExceptionType{
+
+/// Possible Types of Exceptions that stores errCode, errName and errPrompt and canExposeToClient
+/// 
+/// All properties are final and should not be changed.
+class InteractivePlusSystemExceptionType extends Equatable{
   final String errName;
   final int errCode;
   final String Function([String? locale]) errPrompt;
@@ -34,15 +39,7 @@ class InteractivePlusSystemExceptionType{
   InteractivePlusSystemExceptionType._(this.errName, this.errCode, this.canExposeToClient, this.errPrompt);
 
   @override
-  int get hashCode => errCode;
-
-  @override
-  operator ==(Object e){
-    if(e is! InteractivePlusSystemExceptionType){
-      return false;
-    }
-    return e.errCode == errCode;
-  }
+  List<Object> get props => [errCode];
 
   static final NO_ERROR = InteractivePlusSystemExceptionType._(
     "NoErr", 
@@ -211,7 +208,7 @@ class InteractivePlusSystemExceptionType{
   );
 }
 
-class InteractivePlusSystemException<ParameterType> implements Exception, Serializable{
+class InteractivePlusSystemException<ParameterType> extends Equatable implements Exception, Serializable{
   static final InteractivePlusSystemException<void> NO_ERROR_EXCEPTION = InteractivePlusSystemException._(
     InteractivePlusSystemExceptionType.NO_ERROR, 
     null, 
@@ -233,24 +230,7 @@ class InteractivePlusSystemException<ParameterType> implements Exception, Serial
   InteractivePlusSystemException._(this.errType, this.errMessage, this.errParams);
 
   @override
-  int get hashCode{
-    if(errMessage != null){
-      return errType.errCode + errMessage!().hashCode + errParams.hashCode;
-    }else{
-      return errType.errCode + -199 + errParams.hashCode;
-    }
-  }
-
-  @override
-  bool operator == (Object e){
-    if(identical(this, e)){
-      return true;
-    }
-    if(e is! InteractivePlusSystemException<ParameterType>){
-      return false;
-    }
-    return e.errType == errType && e.errMessage!(null) == errMessage!(null) && e.errParams == errParams;
-  }
+  List<Object?> get props => [errType, errMessage!(), errParams];
 
   static InteractivePlusSystemException<dynamic> fromMap(Map<String,dynamic> json){
     if(json['errCode'] == null || json['errCode'] is! int){

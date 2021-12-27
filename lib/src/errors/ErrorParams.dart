@@ -23,9 +23,10 @@ SOFTWARE.
  */
 
 
+import 'package:equatable/equatable.dart';
 import 'package:interactiveplus_shared_dart/src/utils/serializable.dart';
 
-class SingleItemRelatedParams implements Serializable{
+class SingleItemRelatedParams extends Equatable implements Serializable{
   final String item;
   SingleItemRelatedParams({required this.item});
   @override
@@ -44,18 +45,10 @@ class SingleItemRelatedParams implements Serializable{
   }
 
   @override
-  int get hashCode => item.hashCode;
-
-  @override
-  bool operator == (Object e){
-    if(e is! SingleItemRelatedParams){
-      return false;
-    }
-    return identical(this, e) || (e.item == item);
-  }
+  List<Object?> get props => [item];
 }
 
-class MultipleItemRelatedParams implements Serializable{
+class MultipleItemRelatedParams extends Equatable implements Serializable{
   final List<String> items;
   MultipleItemRelatedParams({required this.items});
   @override
@@ -73,18 +66,10 @@ class MultipleItemRelatedParams implements Serializable{
     }
   }
   @override
-  int get hashCode => items.hashCode;
-
-  @override
-  bool operator == (Object e){
-    if(e is! MultipleItemRelatedParams){
-      return false;
-    }
-    return identical(this, e) || (e.items == items);
-  }
+  List<Object?> get props => [items];
 }
 
-class StorageEngineFailureParams implements Serializable{
+class StorageEngineFailureParams extends Equatable implements Serializable{
   final String storageEngineName;
   final int? storageStatusCode;
   final String? storageErrorMessage;
@@ -120,13 +105,5 @@ class StorageEngineFailureParams implements Serializable{
     return StorageEngineFailureParams(storageEngineName: storageEngineName, storageStatusCode: storageStatusCode, storageErrorMessage: storageErrorMessage);
   }
   @override
-  int get hashCode => storageEngineName.hashCode + (storageStatusCode ?? -100) + (storageErrorMessage == null ? storageErrorMessage.hashCode : 200);
-
-  @override
-  bool operator == (Object e){
-    if(e is! StorageEngineFailureParams){
-      return false;
-    }
-    return identical(this, e) || (e.storageEngineName == storageEngineName && e.storageStatusCode == storageStatusCode && e.storageErrorMessage == storageErrorMessage);
-  }
+  List<Object?> get props => [storageEngineName, storageStatusCode, storageErrorMessage];
 }
