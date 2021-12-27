@@ -214,7 +214,7 @@ class InteractivePlusSystemException<ParameterType> extends Equatable implements
     null, 
     null
   );
-  static final InnerParseException SerializationException = InnerParseException(([locale]) => Intl.message(
+  static final InnerParseException SERIALIZATION_EXCEPTION = InnerParseException(([locale]) => Intl.message(
     "An exception occurrred during serialization or deserialization process.",
     name: "SerializationExceptionPrompt",
     desc: "Prompt user that an error occured during serialization or deserialization.",
@@ -234,7 +234,7 @@ class InteractivePlusSystemException<ParameterType> extends Equatable implements
 
   static InteractivePlusSystemException<dynamic> fromMap(Map<String,dynamic> json){
     if(json['errCode'] == null || json['errCode'] is! int){
-      throw Exception("Cannot deserialize this map");
+      throw InteractivePlusSystemException.SERIALIZATION_EXCEPTION;
     }
     int errCode = json['errCode'];
     if(errCode == InteractivePlusSystemExceptionType.NO_ERROR.errCode){
@@ -268,7 +268,7 @@ class InteractivePlusSystemException<ParameterType> extends Equatable implements
     }else if(errCode == InteractivePlusSystemExceptionType.SYSTEM_BUSY_EXCEPTION.errCode){
       return SystemBusyException.fromMap(json);
     }
-    throw SerializationException;
+    throw SERIALIZATION_EXCEPTION;
   }
   @override
   Map<String, dynamic> toMap([String? locale]){
@@ -300,7 +300,7 @@ class UnknownInnerError extends InteractivePlusSystemException<void>{
        || map['errCode'] is! int
        || map['errCode'] != InteractivePlusSystemExceptionType.UNKNOWN_INNER_ERROR.errCode
     ){
-      throw Exception("Unmatched type");
+      throw InteractivePlusSystemException.SERIALIZATION_EXCEPTION;
     }
     String Function([String? locale])? errMessageDecoded;
     if(map['errMessage'] != null && map['errMessage'] is String){
@@ -318,7 +318,7 @@ class InnerParseException extends InteractivePlusSystemException<SingleItemRelat
        || map['errCode'] is! int
        || map['errCode'] != InteractivePlusSystemExceptionType.INNER_PARSE_EXCEPTION.errCode
     ){
-      throw Exception("Unmatched type");
+      throw InteractivePlusSystemException.SERIALIZATION_EXCEPTION;
     }
     String Function([String? locale])? errMessageDecoded;
     if(map['errMessage'] != null && map['errMessage'] is String){
@@ -345,7 +345,7 @@ class StorageEngineFailure extends InteractivePlusSystemException<StorageEngineF
        || map['errCode'] is! int
        || map['errCode'] != InteractivePlusSystemExceptionType.STROAGE_ENGINE_FAILURE.errCode
     ){
-      throw Exception("Unmatched type");
+      throw InteractivePlusSystemException.SERIALIZATION_EXCEPTION;
     }
     String Function([String? locale])? errMessageDecoded;
     if(map['errMessage'] != null && map['errMessage'] is String){
@@ -371,7 +371,7 @@ class OuterServiceCredentialMismatchException extends InteractivePlusSystemExcep
        || map['errCode'] is! int
        || map['errCode'] != InteractivePlusSystemExceptionType.OUTER_SERVICE_CREDENTIAL_MISMATCH.errCode
     ){
-      throw Exception("Unmatched type");
+      throw InteractivePlusSystemException.SERIALIZATION_EXCEPTION;
     }
     String Function([String? locale])? errMessageDecoded;
     if(map['errMessage'] != null && map['errMessage'] is String){
@@ -397,7 +397,7 @@ class OuterServiceFailedException extends InteractivePlusSystemException<SingleI
        || map['errCode'] is! int
        || map['errCode'] != InteractivePlusSystemExceptionType.OUTER_SERVICE_FAILURE.errCode
     ){
-      throw Exception("Unmatched type");
+      throw InteractivePlusSystemException.SERIALIZATION_EXCEPTION;
     }
     String Function([String? locale])? errMessageDecoded;
     if(map['errMessage'] != null && map['errMessage'] is String){
@@ -423,7 +423,7 @@ class RequestFormatException extends InteractivePlusSystemException<MultipleItem
        || map['errCode'] is! int
        || map['errCode'] != InteractivePlusSystemExceptionType.REQUEST_FORMAT_EXCEPTION.errCode
     ){
-      throw Exception("Unmatched type");
+      throw InteractivePlusSystemException.SERIALIZATION_EXCEPTION;
     }
     String Function([String? locale])? errMessageDecoded;
     if(map['errMessage'] != null && map['errMessage'] is String){
@@ -449,7 +449,7 @@ class ItemNotFoundException extends InteractivePlusSystemException<SingleItemRel
        || map['errCode'] is! int
        || map['errCode'] != InteractivePlusSystemExceptionType.ITEM_NOT_FOUND_EXCEPTION.errCode
     ){
-      throw Exception("Unmatched type");
+      throw InteractivePlusSystemException.SERIALIZATION_EXCEPTION;
     }
     String Function([String? locale])? errMessageDecoded;
     if(map['errMessage'] != null && map['errMessage'] is String){
@@ -475,7 +475,7 @@ class ItemAlreadyExistException extends InteractivePlusSystemException<SingleIte
        || map['errCode'] is! int
        || map['errCode'] != InteractivePlusSystemExceptionType.ITEM_ALREADY_EXIST_EXCEPTION.errCode
     ){
-      throw Exception("Unmatched type");
+      throw InteractivePlusSystemException.SERIALIZATION_EXCEPTION;
     }
     String Function([String? locale])? errMessageDecoded;
     if(map['errMessage'] != null && map['errMessage'] is String){
@@ -501,7 +501,7 @@ class ItemExpiredException extends InteractivePlusSystemException<SingleItemRela
        || map['errCode'] is! int
        || map['errCode'] != InteractivePlusSystemExceptionType.ITEM_EXPIRED_EXCEPTION.errCode
     ){
-      throw Exception("Unmatched type");
+      throw InteractivePlusSystemException.SERIALIZATION_EXCEPTION;
     }
     String Function([String? locale])? errMessageDecoded;
     if(map['errMessage'] != null && map['errMessage'] is String){
@@ -527,7 +527,7 @@ class ItemUsedException extends InteractivePlusSystemException<SingleItemRelated
        || map['errCode'] is! int
        || map['errCode'] != InteractivePlusSystemExceptionType.ITEM_USED_EXCEPTION.errCode
     ){
-      throw Exception("Unmatched type");
+      throw InteractivePlusSystemException.SERIALIZATION_EXCEPTION;
     }
     String Function([String? locale])? errMessageDecoded;
     if(map['errMessage'] != null && map['errMessage'] is String){
@@ -553,7 +553,7 @@ class CredentialMismatchException extends InteractivePlusSystemException<Multipl
        || map['errCode'] is! int
        || map['errCode'] != InteractivePlusSystemExceptionType.CREDENTIAL_MISMATCH_EXCEPTION.errCode
     ){
-      throw Exception("Unmatched type");
+      throw InteractivePlusSystemException.SERIALIZATION_EXCEPTION;
     }
     String Function([String? locale])? errMessageDecoded;
     if(map['errMessage'] != null && map['errMessage'] is String){
@@ -579,7 +579,7 @@ class PermissionDeniedException extends InteractivePlusSystemException<void>{
        || map['errCode'] is! int
        || map['errCode'] != InteractivePlusSystemExceptionType.PERMISSION_DENIED_EXCEPTION.errCode
     ){
-      throw Exception("Unmatched type");
+      throw InteractivePlusSystemException.SERIALIZATION_EXCEPTION;
     }
     String Function([String? locale])? errMessageDecoded;
     if(map['errMessage'] != null && map['errMessage'] is String){
@@ -597,7 +597,7 @@ class TooManyRequestsException extends InteractivePlusSystemException<void>{
        || map['errCode'] is! int
        || map['errCode'] != InteractivePlusSystemExceptionType.TOO_MANY_REQUESTS_EXCEPTION.errCode
     ){
-      throw Exception("Unmatched type");
+      throw InteractivePlusSystemException.SERIALIZATION_EXCEPTION;
     }
     String Function([String? locale])? errMessageDecoded;
     if(map['errMessage'] != null && map['errMessage'] is String){
@@ -615,7 +615,7 @@ class SystemBusyException extends InteractivePlusSystemException<void>{
        || map['errCode'] is! int
        || map['errCode'] != InteractivePlusSystemExceptionType.SYSTEM_BUSY_EXCEPTION.errCode
     ){
-      throw Exception("Unmatched type");
+      throw InteractivePlusSystemException.SERIALIZATION_EXCEPTION;
     }
     String Function([String? locale])? errMessageDecoded;
     if(map['errMessage'] != null && map['errMessage'] is String){

@@ -31,7 +31,7 @@ class ABC implements Serializable{
         if(map['name'] != null && map['name'] is String && map['job'] != null && map['job'] is String){
             return ABC(name: map['name'], job: map['job']);
         }else{
-            throw InteractivePlusSystemException.SerializationException;
+            throw InteractivePlusSystemException.SERIALIZATION_EXCEPTION;
         }
     }
 

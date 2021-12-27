@@ -24,7 +24,7 @@ SOFTWARE.
 
 
 import 'package:equatable/equatable.dart';
-import 'package:interactiveplus_shared_dart/src/utils/serializable.dart';
+import 'package:interactiveplus_shared_dart/interactiveplus_shared_dart.dart';
 
 class SingleItemRelatedParams extends Equatable implements Serializable{
   final String item;
@@ -40,7 +40,7 @@ class SingleItemRelatedParams extends Equatable implements Serializable{
     if(map['item'] != null && map['item'] is String){
       return SingleItemRelatedParams(item: map['item']);
     }else{
-      throw Exception("Cannot parse from map");
+      throw InteractivePlusSystemException.SERIALIZATION_EXCEPTION;
     }
   }
 
@@ -62,7 +62,7 @@ class MultipleItemRelatedParams extends Equatable implements Serializable{
     if(map['items'] != null && map['items'] is List<String>){
       return MultipleItemRelatedParams(items: map['items']);
     }else{
-      throw Exception("Cannot parse from map");
+      throw InteractivePlusSystemException.SERIALIZATION_EXCEPTION;
     }
   }
   @override
@@ -94,7 +94,7 @@ class StorageEngineFailureParams extends Equatable implements Serializable{
     if(map['storageEngineName'] != null && map['storageEngineName'] is String){
       storageEngineName = map['storageEngineName'];
     }else{
-      throw Exception("Cannot parse from map");
+      throw InteractivePlusSystemException.SERIALIZATION_EXCEPTION;
     }
     if(map['storageStatusCode'] != null && map['storageStatusCode'] is int){
       storageStatusCode = map['storageStatusCode'];
