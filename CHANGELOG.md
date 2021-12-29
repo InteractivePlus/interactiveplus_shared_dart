@@ -1,3 +1,6 @@
+## 0.0.2
+- Add persistant storage interfaces.
+
 ## 0.0.1
 
 - Common Error Classes that are not translated yet.
