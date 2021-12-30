@@ -29,4 +29,7 @@ abstract class Serializable{
     return toMap(null);
   }
   Serializable.fromMap(Map<String,dynamic> map);
+  static Map<String, dynamic> convertToMap(Serializable serializable){
+    return serializable.toMap(null);
+  }
 }
