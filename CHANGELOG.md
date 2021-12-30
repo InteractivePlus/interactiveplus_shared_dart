@@ -1,3 +1,6 @@
+## 0.0.6
+- Add static non-generic dynamic method for support on json_serializable.
+
 ## 0.0.5
 - Make Serializable Generic and add static method support for all Serializable implementions.
 
