@@ -1,3 +1,6 @@
+## 0.0.4
+- Add convertToMap() static method for Serializable.
+
 ## 0.0.3
 
 - Patch to add toJson() method for Serializable.
