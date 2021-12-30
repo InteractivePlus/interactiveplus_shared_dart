@@ -15,35 +15,7 @@ pub add interactiveplus_shared_dart
 
 ## Usage
 
-```dart
-import 'package:interactiveplus_shared_dart/interactiveplus_shared_dart.dart';
-
-void main(){
-    throw UnknownInnerError(([locale]) => "Just an example! Haha!");
-}
-
-// Example class that implements a Serializable interface.
-class ABC implements Serializable{
-    final String name;
-    final String job;
-    ABC({required this.name, required this.job});
-    factory ABC.fromMap(Map<String,dynamic> map){
-        if(map['name'] != null && map['name'] is String && map['job'] != null && map['job'] is String){
-            return ABC(name: map['name'], job: map['job']);
-        }else{
-            throw InteractivePlusSystemException.SERIALIZATION_EXCEPTION;
-        }
-    }
-
-    @override
-    Map<String,dynamic> toMap([String? locale]){
-        return {
-            "name": name,
-            "job": job
-        };
-    }
-}
-```
+See [Example](example/interactiveplus_shared_dart_example.dart)
 
 ## Additional information
 

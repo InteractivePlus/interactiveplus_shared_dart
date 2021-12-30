@@ -25,5 +25,8 @@ SOFTWARE.
 
 abstract class Serializable{
   Map<String, dynamic> toMap([String? locale]);
+  Map<String, dynamic> toJson(){
+    return toMap(null);
+  }
   Serializable.fromMap(Map<String,dynamic> map);
 }

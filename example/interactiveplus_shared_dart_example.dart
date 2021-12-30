@@ -48,4 +48,9 @@ class ABC implements Serializable{
             "job": job
         };
     }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return toMap(null);
+  }
 }

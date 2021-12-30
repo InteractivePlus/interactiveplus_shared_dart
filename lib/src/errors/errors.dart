@@ -290,6 +290,11 @@ class InteractivePlusSystemException<ParameterType> extends Equatable implements
     }
     return rt;
   }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return toMap(null);
+  }
 }
 
 class UnknownInnerError extends InteractivePlusSystemException<void>{

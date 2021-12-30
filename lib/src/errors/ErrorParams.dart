@@ -46,6 +46,11 @@ class SingleItemRelatedParams extends Equatable implements Serializable{
 
   @override
   List<Object?> get props => [item];
+
+  @override
+  Map<String, dynamic> toJson() {
+    return toMap(null);
+  }
 }
 
 class MultipleItemRelatedParams extends Equatable implements Serializable{
@@ -67,6 +72,11 @@ class MultipleItemRelatedParams extends Equatable implements Serializable{
   }
   @override
   List<Object?> get props => [items];
+
+  @override
+  Map<String, dynamic> toJson() {
+    return toMap(null);
+  }
 }
 
 class StorageEngineFailureParams extends Equatable implements Serializable{
@@ -106,4 +116,9 @@ class StorageEngineFailureParams extends Equatable implements Serializable{
   }
   @override
   List<Object?> get props => [storageEngineName, storageStatusCode, storageErrorMessage];
+
+  @override
+  Map<String, dynamic> toJson() {
+    return toMap(null);
+  }
 }

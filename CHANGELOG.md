@@ -1,3 +1,7 @@
+## 0.0.3
+
+- Patch to add toJson() method for Serializable.
+
 ## 0.0.2
 - Add persistant storage interfaces.
 

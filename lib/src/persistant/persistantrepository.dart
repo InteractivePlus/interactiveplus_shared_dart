@@ -41,6 +41,11 @@ class SearchResult<Type> implements Serializable{
       'collection': finalAddList
     };
   }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return toMap(null);
+  }
 }
 
 abstract class PersistantStorageCreatable<TypeToStore,CreateType>{
