@@ -41,8 +41,13 @@ class ABC implements Serializable{
         }
     }
 
+    ///Created to add more interpolation possibility for other libraries that requires a "static" parsing method
+    static ABC fromJson(Map<String,dynamic> json){
+      return ABC.fromMap(json);
+    }
+
     @override
-    Map<String,dynamic> toMap([String? locale]){
+    Map<String,dynamic> serialize([String? locale]){
         return {
             "name": name,
             "job": job
@@ -51,6 +56,6 @@ class ABC implements Serializable{
 
   @override
   Map<String, dynamic> toJson() {
-    return toMap(null);
+    return serialize(null);
   }
 }

@@ -23,14 +23,13 @@ SOFTWARE.
  */
 
 
-abstract class Serializable{
-  Map<String, dynamic> toMap([String? locale]);
-  Map<String, dynamic> toJson(){
-    return toMap(null);
+abstract class Serializable<T>{
+  T serialize([String? locale]);
+  T toJson(){
+    return serialize(null);
   }
-  Serializable.fromMap(Map<String,dynamic> map);
-  static Map<String, dynamic> convertToMap(Serializable serializable){
-    return serializable.toMap(null);
+  Serializable.fromSerialized(T serialized);
+  static X convertToSerialized<X>(Serializable<X> serializable){
+    return serializable.serialize(null);
   }
 }
-

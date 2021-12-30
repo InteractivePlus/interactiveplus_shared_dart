@@ -31,7 +31,7 @@ import 'package:intl/intl.dart';
 /// Possible Types of Exceptions that stores errCode, errName and errPrompt and canExposeToClient
 /// 
 /// All properties are final and should not be changed.
-class InteractivePlusSystemExceptionType extends Equatable{
+class InteractivePlusSystemExceptionType extends Equatable implements Serializable<int>{
   final String errName;
   final int errCode;
   final String Function([String? locale]) errPrompt;
@@ -40,6 +40,56 @@ class InteractivePlusSystemExceptionType extends Equatable{
 
   @override
   List<Object> get props => [errCode];
+
+  @override
+  int serialize([String? locale]){
+    return errCode;
+  }
+
+  @override
+  int toJson(){
+    return serialize(null);
+  }
+
+  factory InteractivePlusSystemExceptionType.fromInt(int serialized){
+    if(serialized == NO_ERROR.errCode){
+        return NO_ERROR;
+    }else if(serialized == UNKNOWN_INNER_ERROR.errCode){
+      return UNKNOWN_INNER_ERROR;
+    }else if(serialized == INNER_PARSE_EXCEPTION.errCode){
+      return INNER_PARSE_EXCEPTION;
+    }else if(serialized == STROAGE_ENGINE_FAILURE.errCode){
+      return STROAGE_ENGINE_FAILURE;
+    }else if(serialized == OUTER_SERVICE_CREDENTIAL_MISMATCH.errCode){
+      return OUTER_SERVICE_CREDENTIAL_MISMATCH;
+    }else if(serialized == OUTER_SERVICE_FAILURE.errCode){
+      return OUTER_SERVICE_FAILURE;
+    }else if(serialized == REQUEST_FORMAT_EXCEPTION.errCode){
+      return REQUEST_FORMAT_EXCEPTION;
+    }else if(serialized == ITEM_NOT_FOUND_EXCEPTION.errCode){
+      return ITEM_NOT_FOUND_EXCEPTION;
+    }else if(serialized == ITEM_ALREADY_EXIST_EXCEPTION.errCode){
+      return ITEM_ALREADY_EXIST_EXCEPTION;
+    }else if(serialized == ITEM_EXPIRED_EXCEPTION.errCode){
+      return ITEM_EXPIRED_EXCEPTION;
+    }else if(serialized == ITEM_USED_EXCEPTION.errCode){
+      return ITEM_USED_EXCEPTION;
+    }else if(serialized == CREDENTIAL_MISMATCH_EXCEPTION.errCode){
+      return CREDENTIAL_MISMATCH_EXCEPTION;
+    }else if(serialized == PERMISSION_DENIED_EXCEPTION.errCode){
+      return PERMISSION_DENIED_EXCEPTION;
+    }else if(serialized == TOO_MANY_REQUESTS_EXCEPTION.errCode){
+      return TOO_MANY_REQUESTS_EXCEPTION;
+    }else if(serialized == SYSTEM_BUSY_EXCEPTION.errCode){
+      return SYSTEM_BUSY_EXCEPTION;
+    }else{
+      throw InteractivePlusSystemException.SERIALIZATION_EXCEPTION;
+    }
+  }
+
+  static InteractivePlusSystemExceptionType fromJson(int json){
+    return InteractivePlusSystemExceptionType.fromInt(json);
+  }
 
   static final NO_ERROR = InteractivePlusSystemExceptionType._(
     "NoErr", 
@@ -208,7 +258,7 @@ class InteractivePlusSystemExceptionType extends Equatable{
   );
 }
 
-class InteractivePlusSystemException<ParameterType> extends Equatable implements Exception, Serializable{
+class InteractivePlusSystemException<ParameterType> extends Equatable implements Exception, Serializable<Map<String,dynamic>>{
   static final InteractivePlusSystemException<void> NO_ERROR_EXCEPTION = InteractivePlusSystemException._(
     InteractivePlusSystemExceptionType.NO_ERROR, 
     null, 
@@ -232,46 +282,51 @@ class InteractivePlusSystemException<ParameterType> extends Equatable implements
   @override
   List<Object?> get props => [errType, errMessage!(), errParams];
 
-  static InteractivePlusSystemException<dynamic> fromMap(Map<String,dynamic> json){
-    if(json['errCode'] == null || json['errCode'] is! int){
+  static InteractivePlusSystemException<dynamic> fromMap(Map<String,dynamic> map){
+    if(map['errCode'] == null || map['errCode'] is! int){
       throw InteractivePlusSystemException.SERIALIZATION_EXCEPTION;
     }
-    int errCode = json['errCode'];
+    int errCode = map['errCode'];
     if(errCode == InteractivePlusSystemExceptionType.NO_ERROR.errCode){
         return NO_ERROR_EXCEPTION;
     }else if(errCode == InteractivePlusSystemExceptionType.UNKNOWN_INNER_ERROR.errCode){
-      return UnknownInnerError.fromMap(json);
+      return UnknownInnerError.fromMap(map);
     }else if(errCode == InteractivePlusSystemExceptionType.INNER_PARSE_EXCEPTION.errCode){
-      return InnerParseException.fromMap(json);
+      return InnerParseException.fromMap(map);
     }else if(errCode == InteractivePlusSystemExceptionType.STROAGE_ENGINE_FAILURE.errCode){
-      return StorageEngineFailure.fromMap(json);
+      return StorageEngineFailure.fromMap(map);
     }else if(errCode == InteractivePlusSystemExceptionType.OUTER_SERVICE_CREDENTIAL_MISMATCH.errCode){
-      return OuterServiceCredentialMismatchException.fromMap(json);
+      return OuterServiceCredentialMismatchException.fromMap(map);
     }else if(errCode == InteractivePlusSystemExceptionType.OUTER_SERVICE_FAILURE.errCode){
-      return OuterServiceFailedException.fromMap(json);
+      return OuterServiceFailedException.fromMap(map);
     }else if(errCode == InteractivePlusSystemExceptionType.REQUEST_FORMAT_EXCEPTION.errCode){
-      return RequestFormatException.fromMap(json);
+      return RequestFormatException.fromMap(map);
     }else if(errCode == InteractivePlusSystemExceptionType.ITEM_NOT_FOUND_EXCEPTION.errCode){
-      return ItemNotFoundException.fromMap(json);
+      return ItemNotFoundException.fromMap(map);
     }else if(errCode == InteractivePlusSystemExceptionType.ITEM_ALREADY_EXIST_EXCEPTION.errCode){
-      return ItemAlreadyExistException.fromMap(json);
+      return ItemAlreadyExistException.fromMap(map);
     }else if(errCode == InteractivePlusSystemExceptionType.ITEM_EXPIRED_EXCEPTION.errCode){
-      return ItemExpiredException.fromMap(json);
+      return ItemExpiredException.fromMap(map);
     }else if(errCode == InteractivePlusSystemExceptionType.ITEM_USED_EXCEPTION.errCode){
-      return ItemUsedException.fromMap(json);
+      return ItemUsedException.fromMap(map);
     }else if(errCode == InteractivePlusSystemExceptionType.CREDENTIAL_MISMATCH_EXCEPTION.errCode){
-      return CredentialMismatchException.fromMap(json);
+      return CredentialMismatchException.fromMap(map);
     }else if(errCode == InteractivePlusSystemExceptionType.PERMISSION_DENIED_EXCEPTION.errCode){
-      return PermissionDeniedException.fromMap(json);
+      return PermissionDeniedException.fromMap(map);
     }else if(errCode == InteractivePlusSystemExceptionType.TOO_MANY_REQUESTS_EXCEPTION.errCode){
-      return TooManyRequestsException.fromMap(json);
+      return TooManyRequestsException.fromMap(map);
     }else if(errCode == InteractivePlusSystemExceptionType.SYSTEM_BUSY_EXCEPTION.errCode){
-      return SystemBusyException.fromMap(json);
+      return SystemBusyException.fromMap(map);
     }
     throw SERIALIZATION_EXCEPTION;
   }
+  
+  static InteractivePlusSystemException<dynamic> fromJson(Map<String, dynamic> json){
+    return InteractivePlusSystemException.fromMap(json);
+  }
+
   @override
-  Map<String, dynamic> toMap([String? locale]){
+  Map<String, dynamic> serialize([String? locale]){
 
     Map<String, dynamic> rt = {
       'errCode': errType.errCode
@@ -279,7 +334,7 @@ class InteractivePlusSystemException<ParameterType> extends Equatable implements
 
     if(errParams != null){
       if(errParams is Serializable){
-        rt['errParams'] = (errParams as Serializable).toMap(locale);
+        rt['errParams'] = (errParams as Serializable).serialize(locale);
       }else{
         rt['errParams'] = errParams;
       }
@@ -293,7 +348,7 @@ class InteractivePlusSystemException<ParameterType> extends Equatable implements
 
   @override
   Map<String, dynamic> toJson() {
-    return toMap(null);
+    return serialize(null);
   }
 }
 

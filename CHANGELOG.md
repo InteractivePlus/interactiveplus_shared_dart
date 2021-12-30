@@ -1,3 +1,6 @@
+## 0.0.5
+- Make Serializable Generic and add static method support for all Serializable implementions.
+
 ## 0.0.4
 - Add convertToMap() static method for Serializable.
 

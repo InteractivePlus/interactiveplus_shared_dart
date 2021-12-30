@@ -34,84 +34,84 @@ void main() {
 
     test('UnknownInnerError', () {
       UnknownInnerError e = UnknownInnerError(([locale]) => "So that's something, huh?");
-      Map<String,dynamic> serialized = e.toMap();
+      Map<String,dynamic> serialized = e.serialize();
       InteractivePlusSystemException<dynamic> deserialized = InteractivePlusSystemException.fromMap(serialized);
       expect(deserialized, e);
     });
     test('InnerParseException', () {
       InnerParseException e = InnerParseException(([locale]) => "So that's something, huh?");
-      Map<String,dynamic> serialized = e.toMap();
+      Map<String,dynamic> serialized = e.serialize();
       InteractivePlusSystemException<dynamic> deserialized = InteractivePlusSystemException.fromMap(serialized);expect(deserialized, e);
     });
     test('StorageEngineFailure', () {
       StorageEngineFailure e = StorageEngineFailure(([locale]) => "So that's something, huh?",StorageEngineFailureParams(storageEngineName: "MySQL",storageErrorMessage: "Msg"));
-      Map<String,dynamic> serialized = e.toMap();
+      Map<String,dynamic> serialized = e.serialize();
       InteractivePlusSystemException<dynamic> deserialized = InteractivePlusSystemException.fromMap(serialized);
       expect(deserialized, e);
     });
     test('OuterServiceCredentialMismatch', () {
       OuterServiceCredentialMismatchException e = OuterServiceCredentialMismatchException(([locale]) => "So that's something, huh?",SingleItemRelatedParams(item: '123'));
-      Map<String,dynamic> serialized = e.toMap();
+      Map<String,dynamic> serialized = e.serialize();
       InteractivePlusSystemException<dynamic> deserialized = InteractivePlusSystemException.fromMap(serialized);
       expect(deserialized, e);
     });
     test('OuterServiceFailure', () {
       OuterServiceFailedException e = OuterServiceFailedException(([locale]) => "So that's something, huh?",SingleItemRelatedParams(item: "123"));
-      Map<String,dynamic> serialized = e.toMap();
+      Map<String,dynamic> serialized = e.serialize();
       InteractivePlusSystemException<dynamic> deserialized = InteractivePlusSystemException.fromMap(serialized);
       expect(deserialized, e);
     });
     test('RequestFormatException', () {
       RequestFormatException e = RequestFormatException(([locale]) => "So that's something, huh?",MultipleItemRelatedParams(items:["123","456"]));
-      Map<String,dynamic> serialized = e.toMap();
+      Map<String,dynamic> serialized = e.serialize();
       InteractivePlusSystemException<dynamic> deserialized = InteractivePlusSystemException.fromMap(serialized);
       expect(deserialized, e);
     });
     test('ItemNotFound', () {
       ItemNotFoundException e = ItemNotFoundException(([locale]) => "So that's something, huh?",SingleItemRelatedParams(item: "123"));
-      Map<String,dynamic> serialized = e.toMap();
+      Map<String,dynamic> serialized = e.serialize();
       InteractivePlusSystemException<dynamic> deserialized = InteractivePlusSystemException.fromMap(serialized);
       expect(deserialized, e);
     });
     test('ItemAlreadyExists', () {
       ItemAlreadyExistException e = ItemAlreadyExistException(([locale]) => "So that's something, huh?",SingleItemRelatedParams(item: "123"));
-      Map<String,dynamic> serialized = e.toMap();
+      Map<String,dynamic> serialized = e.serialize();
       InteractivePlusSystemException<dynamic> deserialized = InteractivePlusSystemException.fromMap(serialized);
       expect(deserialized, e);
     });
     test('ItemExpired', () {
       ItemExpiredException e = ItemExpiredException(([locale]) => "So that's something, huh?",SingleItemRelatedParams(item: "123"));
-      Map<String,dynamic> serialized = e.toMap();
+      Map<String,dynamic> serialized = e.serialize();
       InteractivePlusSystemException<dynamic> deserialized = InteractivePlusSystemException.fromMap(serialized);
       expect(deserialized, e);
     });
     test('ItemUsed', () {
       ItemUsedException e = ItemUsedException(([locale]) => "So that's something, huh?",SingleItemRelatedParams(item: "123"));
-      Map<String,dynamic> serialized = e.toMap();
+      Map<String,dynamic> serialized = e.serialize();
       InteractivePlusSystemException<dynamic> deserialized = InteractivePlusSystemException.fromMap(serialized);
       expect(deserialized, e);
     });
     test('CredentialMismatch', () {
       CredentialMismatchException e = CredentialMismatchException(([locale]) => "So that's something, huh?",MultipleItemRelatedParams(items:["123","456"]));
-      Map<String,dynamic> serialized = e.toMap();
+      Map<String,dynamic> serialized = e.serialize();
       InteractivePlusSystemException<dynamic> deserialized = InteractivePlusSystemException.fromMap(serialized);
       expect(deserialized, e);
     });
     test('PermissionDenied', () {
       PermissionDeniedException e = PermissionDeniedException(([locale]) => "So that's something, huh?");
-      Map<String,dynamic> serialized = e.toMap();
+      Map<String,dynamic> serialized = e.serialize();
       InteractivePlusSystemException<dynamic> deserialized = InteractivePlusSystemException.fromMap(serialized);
       expect(deserialized, e);
     });
     test('TooManyRequests', () {
       TooManyRequestsException e = TooManyRequestsException(([locale]) => "So that's something, huh?");
-      Map<String,dynamic> serialized = e.toMap();
+      Map<String,dynamic> serialized = e.serialize();
       InteractivePlusSystemException<dynamic> deserialized = InteractivePlusSystemException.fromMap(serialized);
       expect(deserialized, e);
     });
     test('SystemBusyException', () {
       SystemBusyException e = SystemBusyException(([locale]) => "So that's something, huh?");
-      Map<String,dynamic> serialized = e.toMap();
+      Map<String,dynamic> serialized = e.serialize();
       InteractivePlusSystemException<dynamic> deserialized = InteractivePlusSystemException.fromMap(serialized);
       expect(deserialized, e);
     });

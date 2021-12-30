@@ -24,13 +24,14 @@ SOFTWARE.
 
 
 import 'package:equatable/equatable.dart';
-import 'package:interactiveplus_shared_dart/interactiveplus_shared_dart.dart';
+import 'package:interactiveplus_shared_dart/src/utils/serializable.dart';
+import 'package:interactiveplus_shared_dart/src/errors/errors.dart';
 
-class SingleItemRelatedParams extends Equatable implements Serializable{
+class SingleItemRelatedParams extends Equatable implements Serializable<Map<String,dynamic>>{
   final String item;
   SingleItemRelatedParams({required this.item});
   @override
-  Map<String,dynamic> toMap([String? locale]){
+  Map<String,dynamic> serialize([String? locale]){
     Map<String, dynamic> rt = {
       "item": item
     };
@@ -44,20 +45,24 @@ class SingleItemRelatedParams extends Equatable implements Serializable{
     }
   }
 
+  static SingleItemRelatedParams fromJson(Map<String,dynamic> json){
+    return SingleItemRelatedParams.fromMap(json);
+  }
+
   @override
   List<Object?> get props => [item];
 
   @override
   Map<String, dynamic> toJson() {
-    return toMap(null);
+    return serialize(null);
   }
 }
 
-class MultipleItemRelatedParams extends Equatable implements Serializable{
+class MultipleItemRelatedParams extends Equatable implements Serializable<Map<String,dynamic>>{
   final List<String> items;
   MultipleItemRelatedParams({required this.items});
   @override
-  Map<String,dynamic> toMap([String? locale]){
+  Map<String,dynamic> serialize([String? locale]){
     Map<String, dynamic> rt = {
       "items": items
     };
@@ -70,22 +75,27 @@ class MultipleItemRelatedParams extends Equatable implements Serializable{
       throw InteractivePlusSystemException.SERIALIZATION_EXCEPTION;
     }
   }
+
+  static MultipleItemRelatedParams fromJson(Map<String,dynamic> json){
+    return MultipleItemRelatedParams.fromMap(json);
+  }
+
   @override
   List<Object?> get props => [items];
 
   @override
   Map<String, dynamic> toJson() {
-    return toMap(null);
+    return serialize(null);
   }
 }
 
-class StorageEngineFailureParams extends Equatable implements Serializable{
+class StorageEngineFailureParams extends Equatable implements Serializable<Map<String,dynamic>>{
   final String storageEngineName;
   final int? storageStatusCode;
   final String? storageErrorMessage;
   StorageEngineFailureParams({required this.storageEngineName, this.storageStatusCode, this.storageErrorMessage});
   @override
-  Map<String,dynamic> toMap([String? locale]){
+  Map<String,dynamic> serialize([String? locale]){
     Map<String, dynamic> rt = {
       "storageEngineName": storageEngineName
     };
@@ -114,11 +124,14 @@ class StorageEngineFailureParams extends Equatable implements Serializable{
     }
     return StorageEngineFailureParams(storageEngineName: storageEngineName, storageStatusCode: storageStatusCode, storageErrorMessage: storageErrorMessage);
   }
+  static StorageEngineFailureParams fromJson(Map<String,dynamic> json){
+    return StorageEngineFailureParams.fromMap(json);
+  }
   @override
   List<Object?> get props => [storageEngineName, storageStatusCode, storageErrorMessage];
 
   @override
   Map<String, dynamic> toJson() {
-    return toMap(null);
+    return serialize(null);
   }
 }

@@ -1,6 +1,6 @@
 import 'package:interactiveplus_shared_dart/interactiveplus_shared_dart.dart';
 
-class SearchResult<Type> implements Serializable{
+class SearchResult<Type> implements Serializable<Map<String,dynamic>>{
   final int numFetched;
   final int numTotalAccordingToSearchParam;
   final Iterable<Type> collection;
@@ -23,13 +23,18 @@ class SearchResult<Type> implements Serializable{
       throw InteractivePlusSystemException.SERIALIZATION_EXCEPTION;
     }
   }
+
+  static SearchResult<Type> fromJson<Type>(Map<String,dynamic> json, Type Function(Map<String,dynamic>) typeDeserializeConstructor){
+    return SearchResult.fromMap(json, typeDeserializeConstructor);
+  }
+
   @override
-  Map<String, dynamic> toMap([String? locale]) {
+  Map<String, dynamic> serialize([String? locale]) {
     late Iterable finalAddList;
     if(collection.isNotEmpty && collection.first is Serializable){
-      List<Map<String,dynamic>> finalList = List.empty(growable: true);
+      List<dynamic> finalList = List.empty(growable: true);
       for(var i in collection){
-        finalList.add((i as Serializable).toMap(locale));
+        finalList.add((i as Serializable).serialize(locale));
       }
       finalAddList = finalList;
     }else{
@@ -44,7 +49,7 @@ class SearchResult<Type> implements Serializable{
 
   @override
   Map<String, dynamic> toJson() {
-    return toMap(null);
+    return serialize(null);
   }
 }
 
