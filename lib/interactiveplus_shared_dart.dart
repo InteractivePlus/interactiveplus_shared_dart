@@ -28,3 +28,4 @@ export 'src/errors/ErrorParams.dart';
 export 'src/errors/errors.dart';
 export 'src/utils/serializable.dart';
 export 'src/persistant/persistantrepository.dart';
+export 'src/utils/hexablestring.dart';

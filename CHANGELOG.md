@@ -1,3 +1,7 @@
+## 0.0.8
+
+- Minor export fix
+
 ## 0.0.7
 
 - Add HexableString extension on String.
