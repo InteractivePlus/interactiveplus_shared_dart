@@ -1,3 +1,7 @@
+## 0.0.7
+
+- Add HexableString extension on String.
+
 ## 0.0.6
 - Add static non-generic dynamic method for support on json_serializable.
 
