@@ -1,3 +1,7 @@
+## 0.0.9
+
+- Add nullable serialization methods.
+
 ## 0.0.8
 
 - Minor export fix
