@@ -35,4 +35,10 @@ abstract class Serializable<T>{
   static dynamic convertToDynamicSerialized(Serializable serializable){
     return serializable.serialize(null);
   }
+  static X? convertToSerializedWithNullable<X>(Serializable<X>? serializable){
+    return serializable?.serialize(null);
+  }
+  static dynamic convertToDynamicSerializedWithNullable(Serializable? serializable){
+    return serializable?.serialize(null);
+  }
 }
