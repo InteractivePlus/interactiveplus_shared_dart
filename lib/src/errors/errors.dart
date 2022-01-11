@@ -90,6 +90,7 @@ class InteractivePlusSystemExceptionType extends Equatable implements Serializab
   static InteractivePlusSystemExceptionType fromJson(int json){
     return InteractivePlusSystemExceptionType.fromInt(json);
   }
+  static InteractivePlusSystemExceptionType? fromJsonNullable(int? json) => json == null ? null : fromJson(json);
 
   static final NO_ERROR = InteractivePlusSystemExceptionType._(
     "NoErr", 
@@ -321,9 +322,11 @@ class InteractivePlusSystemException<ParameterType> extends Equatable implements
     throw SERIALIZATION_EXCEPTION;
   }
   
-  static InteractivePlusSystemException<dynamic> fromJson(Map<String, dynamic> json){
+  static InteractivePlusSystemException fromJson(Map<String, dynamic> json){
     return InteractivePlusSystemException.fromMap(json);
   }
+  
+  static InteractivePlusSystemException? fromJsonNullable(Map<String,dynamic>? json) => json == null ? null : fromJson(json);
 
   @override
   Map<String, dynamic> serialize([String? locale]){

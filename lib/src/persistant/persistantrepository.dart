@@ -57,11 +57,14 @@ abstract class PersistantStorageCreatable<TypeToStore,CreateType>{
   Future<TypeToStore> createNew(CreateType createInfo);  
 }
 
-abstract class PersistantStorageSearchable<TypeToStore, FetchParameter, SearchParameter>{
-  Future<TypeToStore?> fetchFromRepo(FetchParameter fetchParam);
-  Future<bool> doesExist(FetchParameter fetchParam);
+abstract class PersistantStorageSearchable<TypeToStore, SearchParameter>{
   Future<int> getTotalItemAccordingToSearchParameter(SearchParameter searchParam);
   Future<SearchResult<TypeToStore>> searchItems(SearchParameter searchParam, {int offset = 0, int limit = -1});
+}
+
+abstract class PersistantStorageFetchable<TypeToStore, FetchParameter>{
+  Future<TypeToStore?> fetchFromRepo(FetchParameter fetchParam);
+  Future<bool> doesExist(FetchParameter fetchParam);
 }
 
 abstract class PersistantStorageModifiable<TypeToStore, UpdateFetchParameter, ClearSearchParameter>{

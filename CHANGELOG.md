@@ -1,3 +1,8 @@
+## 0.0.11
+
+- Add fromJsonNullable() methods to all Serializable Implementations.
+- Seperate PersistantStorageSearchable into Searchable and Fetchable.
+
 ## 0.0.10
 
 - Make persistant storage return future objects.

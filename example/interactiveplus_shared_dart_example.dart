@@ -46,6 +46,9 @@ class ABC implements Serializable{
       return ABC.fromMap(json);
     }
 
+    ///Created to add more interpolation possibility for other libraries that requires a "static" parsing method
+    static ABC? fromJsonNullable(Map<String,dynamic>? json) => json == null ? null : fromJson(json);
+
     @override
     Map<String,dynamic> serialize([String? locale]){
         return {

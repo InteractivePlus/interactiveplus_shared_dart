@@ -48,6 +48,7 @@ class SingleItemRelatedParams extends Equatable implements Serializable<Map<Stri
   static SingleItemRelatedParams fromJson(Map<String,dynamic> json){
     return SingleItemRelatedParams.fromMap(json);
   }
+  static SingleItemRelatedParams? fromJsonNullable(Map<String,dynamic>? json) => json == null ? null : fromJson(json);
 
   @override
   List<Object?> get props => [item];
@@ -79,6 +80,8 @@ class MultipleItemRelatedParams extends Equatable implements Serializable<Map<St
   static MultipleItemRelatedParams fromJson(Map<String,dynamic> json){
     return MultipleItemRelatedParams.fromMap(json);
   }
+
+  static MultipleItemRelatedParams? fromJsonNullable(Map<String,dynamic>? json) => json == null ? null : fromJson(json);
 
   @override
   List<Object?> get props => [items];
@@ -127,6 +130,7 @@ class StorageEngineFailureParams extends Equatable implements Serializable<Map<S
   static StorageEngineFailureParams fromJson(Map<String,dynamic> json){
     return StorageEngineFailureParams.fromMap(json);
   }
+  static StorageEngineFailureParams? fromJsonNullable(Map<String,dynamic>? json) => json == null ? null : fromJson(json);
   @override
   List<Object?> get props => [storageEngineName, storageStatusCode, storageErrorMessage];
 
