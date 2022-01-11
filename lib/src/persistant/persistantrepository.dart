@@ -54,18 +54,26 @@ class SearchResult<Type> implements Serializable<Map<String,dynamic>>{
 }
 
 abstract class PersistantStorageCreatable<TypeToStore,CreateType>{
-  TypeToStore createNew(CreateType createInfo);  
+  Future<TypeToStore> createNew(CreateType createInfo);  
 }
 
 abstract class PersistantStorageSearchable<TypeToStore, FetchParameter, SearchParameter>{
-  TypeToStore? fetchFromRepo(FetchParameter fetchParam);
-  bool doesExist(FetchParameter fetchParam);
-  int getTotalItemAccordingToSearchParameter(SearchParameter searchParam);
-  SearchResult<TypeToStore> searchItems(SearchParameter searchParam, {int offset = 0, int limit = -1});
+  Future<TypeToStore?> fetchFromRepo(FetchParameter fetchParam);
+  Future<bool> doesExist(FetchParameter fetchParam);
+  Future<int> getTotalItemAccordingToSearchParameter(SearchParameter searchParam);
+  Future<SearchResult<TypeToStore>> searchItems(SearchParameter searchParam, {int offset = 0, int limit = -1});
 }
 
 abstract class PersistantStorageModifiable<TypeToStore, UpdateFetchParameter, ClearSearchParameter>{
-  void update(UpdateFetchParameter fetchParameter, TypeToStore updatedType);
-  void delete(UpdateFetchParameter fetchParameter);
-  void clear(ClearSearchParameter searchParameter);
+  Future<void> update(UpdateFetchParameter fetchParameter, TypeToStore updatedType);
+  Future<void> delete(UpdateFetchParameter fetchParameter);
+  Future<void> clear(ClearSearchParameter searchParameter);
+}
+
+abstract class PersistantStorageInstallable{
+  Future<void> install();
+}
+
+abstract class PersistantStorageUninstallable{
+  Future<void> uninstall();
 }

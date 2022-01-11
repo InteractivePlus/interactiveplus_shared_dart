@@ -1,3 +1,7 @@
+## 0.0.10
+
+- Make persistant storage return future objects.
+
 ## 0.0.9
 
 - Add nullable serialization methods.
