@@ -5,14 +5,14 @@ class SearchResult<Type> implements Serializable<Map<String,dynamic>>{
   final int numTotalAccordingToSearchParam;
   final Iterable<Type> collection;
   SearchResult(this.numFetched,this.numTotalAccordingToSearchParam,this.collection);
-  factory SearchResult.fromMap(Map<String,dynamic> map, Type Function(Map<String,dynamic>) typeDeserializeConstructor){
+  static SearchResult<Type> fromMap<Type, InnerTypeSerialized>(Map<String,dynamic> map, Type Function(InnerTypeSerialized) typeDeserializeConstructor){
     if(map['numFetched'] != null && map['numFetched'] is int
        && map['numTotalSearched'] != null && map['numTotalSearched'] is int
-       && map['collection'] != null && (map['collection'] is List<Map<String,dynamic>> || map['collection'] is List<Type>)
+       && map['collection'] != null && (map['collection'] is List<InnerTypeSerialized> || map['collection'] is List<Type>)
     ){
-      if(map['collection'] is List<Map<String,dynamic>>){
+      if(map['collection'] is List<InnerTypeSerialized>){
         List<Type> t = List.empty(growable: true);
-        for(var i in (map['collection'] as List<Map<String,dynamic>>)){
+        for(InnerTypeSerialized i in (map['collection'] as List<InnerTypeSerialized>)){
           t.add(typeDeserializeConstructor(i));
         }
         return SearchResult(map['numFetched'], map['numTotalSearched'], t);
