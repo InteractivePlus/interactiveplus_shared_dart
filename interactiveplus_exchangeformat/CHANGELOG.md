@@ -1,3 +1,7 @@
+## 0.0.4
+
+- Bugfix
+
 ## 0.0.3
 
 - Bugfix Generate Functions
