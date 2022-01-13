@@ -1,4 +1,3 @@
-/*
 MIT License
 
 Copyright (c) 2021 interactiveplus.org and Yunhao Cao (Github @ ToiletCommander)
@@ -20,33 +19,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
- */
-
-
-abstract class Serializable<T>{
-  T serialize([String? locale]);
-  T toJson(){
-    return serialize(null);
-  }
-  Serializable.init();
-  Serializable.fromSerialized(T serialized);
-  static X convertToSerialized<X>(Serializable<X> serializable){
-    return serializable.serialize(null);
-  }
-  static dynamic convertToDynamicSerialized(Serializable serializable){
-    return serializable.serialize(null);
-  }
-  static X? convertToSerializedWithNullable<X>(Serializable<X>? serializable){
-    return serializable?.serialize(null);
-  }
-  static dynamic convertToDynamicSerializedWithNullable(Serializable? serializable){
-    return serializable?.serialize(null);
-  }
-}
-
-abstract class SerializableMapCanListFields extends Serializable<Map<String,dynamic>>{
-  SerializableMapCanListFields.fromSerialized(Map<String, dynamic> serialized) : super.fromSerialized(serialized);
-  SerializableMapCanListFields.init() : super.init();
-  Set<String> getMandatorySerializedFields();
-  Set<String> getOptionalSerializedFields();
-}

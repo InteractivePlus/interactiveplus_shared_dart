@@ -1,3 +1,7 @@
+## 0.0.12
+
+- Add List Serialized Key Abstract Serializable Subclass
+
 ## 0.0.11
 
 - Add fromJsonNullable() methods to all Serializable Implementations.
