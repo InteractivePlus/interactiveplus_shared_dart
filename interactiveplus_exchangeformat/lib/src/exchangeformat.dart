@@ -104,17 +104,17 @@ class ExchangeRateLimitMetaData implements Serializable<Map<String,dynamic>>{
   Map<String, dynamic> toJson() => serialize(null);
 }
 
-void exchangeVoidToVoidFunction<SettingType>(
-  void serialized, 
-  SettingType settings
+void Function<FineSettingType extends SettingType>(void serialized, FineSettingType settings) exchangeVoidToVoidFunction<SettingType>(
 ) {
-  return;
+  return <FineSettingType extends SettingType>(void serialized, FineSettingType setting){
+    return;
+  };
 }
 
-ReturnType Function<SettingType>(FirstVarType i, SettingType sharedSettings) convertToExchangeFormatApplicableFunc<ReturnType, FirstVarType>(ReturnType Function(FirstVarType firstVar) func){
-  return <SettingType>(
+ReturnType Function<FineSettingType extends SettingType>(FirstVarType i, FineSettingType sharedSettings) convertToExchangeFormatApplicableFunc<ReturnType, FirstVarType, SettingType>(ReturnType Function(FirstVarType firstVar) func){
+  return <FineSettingType extends SettingType>(
     FirstVarType i, 
-    SettingType sharedSettings
+    FineSettingType sharedSettings
   ) => func(i);
 }
 

@@ -1,6 +1,10 @@
+## 0.0.3
+
+- Bugfix Generate Functions
+
 ## 0.0.2
 
-Add SharedSetting Template for ExchangeFormat
+- Add SharedSetting Template for ExchangeFormat
 
 ## 0.0.1
 
