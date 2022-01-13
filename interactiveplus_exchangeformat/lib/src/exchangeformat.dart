@@ -130,7 +130,7 @@ class ExchangeFormat<Request, ResponseDataSuccess, ResponseDataFailed, RequestSe
   
   ///Validate Requests should return map key in the serialized request data structure that triggered the error
   ///If null is returned, it means the Request Object has passed the test.
-  final List<String>? Function<FineSettingType extends SettingType>(Request req, SettingType sharedSettings)? validateRequest;
+  final List<String>? Function<FineSettingType extends SettingType>(Request req, FineSettingType sharedSettings)? validateRequest;
   
   final ResponseDataSuccess Function<FineSettingType extends SettingType>(ResponseDataSuccessSerialized serialized, FineSettingType sharedSettings) parseSuccessResponseData;
   final ResponseDataFailed Function<FineSettingType extends SettingType>(ResponseDataFailedSerialized serialized, FineSettingType sharedSettings) parseFailedResponseData;
