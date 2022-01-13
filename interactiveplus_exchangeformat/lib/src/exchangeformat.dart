@@ -118,26 +118,26 @@ ReturnType Function<SettingType>(FirstVarType i, SettingType sharedSettings) con
   ) => func(i);
 }
 
-class ExchangeFormat<Request, ResponseDataSuccess, ResponseDataFailed, RequestSerialized, ResponseDataSuccessSerialized, ResponseDataFailedSerialized>{
+class ExchangeFormat<Request, ResponseDataSuccess, ResponseDataFailed, RequestSerialized, ResponseDataSuccessSerialized, ResponseDataFailedSerialized, SettingType>{
   final String exchangeProtocolName;
   final ExchangeHTTPMetaData httpMetaData;
   final ExchangeRateLimitMetaData rateLimitMetaData;
   final bool requireVerificationCode;
   final String? requiredVerificationCodeScope;
   
-  final Request Function<SettingType>(RequestSerialized serialized, SettingType sharedSettings) parseRequest;
-  final RequestSerialized Function<SettingType>(Request req, SettingType sharedSettings) serializeRequest;
+  final Request Function<FineSettingType extends SettingType>(RequestSerialized serialized, FineSettingType sharedSettings) parseRequest;
+  final RequestSerialized Function<FineSettingType extends SettingType>(Request req, FineSettingType sharedSettings) serializeRequest;
   
   ///Validate Requests should return map key in the serialized request data structure that triggered the error
   ///If null is returned, it means the Request Object has passed the test.
-  final List<String>? Function<SettingType>(Request req, SettingType sharedSettings)? validateRequest;
+  final List<String>? Function<FineSettingType extends SettingType>(Request req, SettingType sharedSettings)? validateRequest;
   
-  final ResponseDataSuccess Function<SettingType>(ResponseDataSuccessSerialized serialized, SettingType sharedSettings) parseSuccessResponseData;
-  final ResponseDataFailed Function<SettingType>(ResponseDataFailedSerialized serialized, SettingType sharedSettings) parseFailedResponseData;
-  final ResponseDataSuccessSerialized Function<SettingType>(ResponseDataSuccess data, SettingType sharedSettings) serializeSuccessResponseData;
-  final ResponseDataFailedSerialized Function<SettingType>(ResponseDataFailed data, SettingType sharedSettings) serializeFailedResponseData;
-  final bool Function<SettingType>(ResponseDataSuccess resDataSuccess, SettingType sharedSettings)? validateResponseDataSuccess;
-  final bool Function<SettingType>(ResponseDataFailed reqDataFailed, SettingType sharedSettings)? validateResponseDataFailed;
+  final ResponseDataSuccess Function<FineSettingType extends SettingType>(ResponseDataSuccessSerialized serialized, FineSettingType sharedSettings) parseSuccessResponseData;
+  final ResponseDataFailed Function<FineSettingType extends SettingType>(ResponseDataFailedSerialized serialized, FineSettingType sharedSettings) parseFailedResponseData;
+  final ResponseDataSuccessSerialized Function<FineSettingType extends SettingType>(ResponseDataSuccess data, FineSettingType sharedSettings) serializeSuccessResponseData;
+  final ResponseDataFailedSerialized Function<FineSettingType extends SettingType>(ResponseDataFailed data, FineSettingType sharedSettings) serializeFailedResponseData;
+  final bool Function<FineSettingType extends SettingType>(ResponseDataSuccess resDataSuccess, FineSettingType sharedSettings)? validateResponseDataSuccess;
+  final bool Function<FineSettingType extends SettingType>(ResponseDataFailed reqDataFailed, FineSettingType sharedSettings)? validateResponseDataFailed;
 
   ExchangeFormat({
     required this.exchangeProtocolName,
@@ -156,18 +156,18 @@ class ExchangeFormat<Request, ResponseDataSuccess, ResponseDataFailed, RequestSe
     this.validateResponseDataFailed
   });
 
-  ExchangeResponse<ResponseDataSuccess, ResponseDataFailed> parseResponse<SettingType>(
+  ExchangeResponse<ResponseDataSuccess, ResponseDataFailed> parseResponse<FineSettingType extends SettingType>(
     Map<String,dynamic> map,
-    SettingType sharedSettings 
+    FineSettingType sharedSettings 
   ) => ExchangeResponse.deserializeStatic(
     map, 
     (ResponseDataSuccessSerialized serializedSucc) => parseSuccessResponseData(serializedSucc,sharedSettings), 
     (ResponseDataFailedSerialized serializedFail) => parseFailedResponseData(serializedFail,sharedSettings)
   );
-  ExchangeResponse<ResponseDataSuccess, ResponseDataFailed> parseAndValidateResponse<SettingType>
+  ExchangeResponse<ResponseDataSuccess, ResponseDataFailed> parseAndValidateResponse<FineSettingType extends SettingType>
   (
     Map<String,dynamic> map,
-    SettingType sharedSettings
+    FineSettingType sharedSettings
   ){
     var parsed = parseResponse(map, sharedSettings);
     if(validateResponseDataSuccess != null && parsed.data != null && !validateResponseDataSuccess!(parsed.data!, sharedSettings)){
