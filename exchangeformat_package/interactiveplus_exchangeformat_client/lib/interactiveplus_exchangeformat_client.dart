@@ -1,0 +1,3 @@
+library interactiveplus_exchangeformat_client;
+
+export 'src/interactiveplus_exchangeformat_client_base.dart' show ExchangeFormatClient;
