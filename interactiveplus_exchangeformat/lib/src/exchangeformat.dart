@@ -61,6 +61,7 @@ class ExchangeHTTPMetaData implements Serializable<Map<String,dynamic>>{
   final int successfulHTTPCode;
   final List<int> possibleHTTPCodes;
   final String relativePathWithParameterMarkedWithLtAndGtSymbols;
+  String get relativePathWithoutSlashBeforeStart => relativePathWithParameterMarkedWithLtAndGtSymbols.startsWith('/') ? relativePathWithParameterMarkedWithLtAndGtSymbols.substring(1) : relativePathWithParameterMarkedWithLtAndGtSymbols;
   final ExchangeHTTPMethod method;
 
   const ExchangeHTTPMetaData({
@@ -122,8 +123,6 @@ class ExchangeFormat<Request, ResponseDataSuccess, ResponseDataFailed, RequestSe
   final String exchangeProtocolName;
   final ExchangeHTTPMetaData httpMetaData;
   final ExchangeRateLimitMetaData rateLimitMetaData;
-  final bool requireVerificationCode;
-  final String? requiredVerificationCodeScope;
   
   final Request Function<FineSettingType extends SettingType>(RequestSerialized serialized, FineSettingType sharedSettings) parseRequest;
   final RequestSerialized Function<FineSettingType extends SettingType>(Request req, FineSettingType sharedSettings) serializeRequest;
@@ -150,8 +149,6 @@ class ExchangeFormat<Request, ResponseDataSuccess, ResponseDataFailed, RequestSe
     required this.parseFailedResponseData,
     required this.serializeSuccessResponseData,
     required this.serializeFailedResponseData,
-    required this.requireVerificationCode,
-    this.requiredVerificationCodeScope,
     this.validateResponseDataSuccess,
     this.validateResponseDataFailed
   });
