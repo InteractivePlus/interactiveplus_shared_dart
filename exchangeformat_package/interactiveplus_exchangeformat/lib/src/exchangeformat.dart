@@ -59,7 +59,6 @@ enum ExchangeHTTPMethod{
 @JsonSerializable()
 class ExchangeHTTPMetaData implements Serializable<Map<String,dynamic>>{
   final int successfulHTTPCode;
-  final List<int> possibleHTTPCodes;
   final String relativePathWithParameterMarkedWithLtAndGtSymbols;
   String get relativePathWithoutSlashBeforeStart => relativePathWithParameterMarkedWithLtAndGtSymbols.startsWith('/') ? relativePathWithParameterMarkedWithLtAndGtSymbols.substring(1) : relativePathWithParameterMarkedWithLtAndGtSymbols;
   final ExchangeHTTPMethod method;
@@ -67,7 +66,6 @@ class ExchangeHTTPMetaData implements Serializable<Map<String,dynamic>>{
   const ExchangeHTTPMetaData({
     required this.method,
     required this.successfulHTTPCode,
-    required this.possibleHTTPCodes,
     required this.relativePathWithParameterMarkedWithLtAndGtSymbols
   });
   factory ExchangeHTTPMetaData.fromMap(Map<String,dynamic> map) => _$ExchangeHTTPMetaDataFromJson(map);

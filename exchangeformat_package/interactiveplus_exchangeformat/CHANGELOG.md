@@ -1,3 +1,8 @@
+## 0.1.0
+
+- Pre-release of 1.0.0
+- Remote HTTP Possible Codes in metadata, only leaving successful HTTP Code
+
 ## 0.0.6
 
 - Delete vericode requirement in ExchangeFormat
